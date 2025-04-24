@@ -64,7 +64,7 @@ CREATE TABLE artifact (
     likes INT DEFAULT 0 COMMENT '点赞数'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文物表';
 
--- 创建点赞表
+-- 点赞表（记录当前用户是否点赞当前显示文物）
 CREATE TABLE likes (
     like_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞记录ID(主键)',
     user_id INT NOT NULL COMMENT '用户ID',
