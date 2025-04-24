@@ -60,8 +60,17 @@ CREATE TABLE artifact (
     era VARCHAR(50) NOT NULL COMMENT '年代',
     type VARCHAR(50) NOT NULL COMMENT '文物类型（如瓷器、书画等）',
     description TEXT COMMENT '详细介绍',
-    image_url VARCHAR(255) COMMENT '图片存储路径'
+    image_url VARCHAR(255) COMMENT '图片存储路径',
+    likes INT DEFAULT 0 COMMENT '点赞数'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文物表';
+
+-- 创建点赞表
+CREATE TABLE likes (
+    like_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞记录ID(主键)',
+    user_id INT NOT NULL COMMENT '用户ID',
+    artifact_id INT NOT NULL COMMENT '文物ID',
+    FOREIGN KEY (artifact_id) REFERENCES artifact(artifact_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞表';
 
 -- 评论表（用户对文物的评论）
 CREATE TABLE comment (
