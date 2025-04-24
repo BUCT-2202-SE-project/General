@@ -81,15 +81,6 @@ CREATE TABLE collection (
     collect_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '收藏时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='收藏表';
 
--- 动态表（用户发布的动态）
-CREATE TABLE post (
-    post_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '动态ID(主键)',
-    content TEXT NOT NULL COMMENT '动态内容',
-    publish_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
-    user_id INT NOT NULL COMMENT '用户ID',
-    review_status ENUM('通过', '未通过') NOT NULL DEFAULT '未通过' COMMENT '审核状态'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='动态表';
-
 -- 问答记录表（用户提问与回答记录）
 CREATE TABLE qa (
     qa_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '问答ID(主键)',
