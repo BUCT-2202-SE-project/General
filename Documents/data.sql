@@ -52,8 +52,8 @@ CREATE TABLE artifact (
 CREATE TABLE likes (
                        like_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '点赞记录ID(主键)',
                        user_id INT NOT NULL COMMENT '用户ID',
-                       artifact_id INT NOT NULL COMMENT '文物ID',
-                       FOREIGN KEY (artifact_id) REFERENCES artifact(artifact_id) ON DELETE CASCADE
+                       artifact_id INT NOT NULL COMMENT '文物ID'
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞表';
 
 -- 评论表（用户对文物的评论）
