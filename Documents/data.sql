@@ -77,22 +77,29 @@ CREATE TABLE collection (
 
 -- 新增问答表和主题表
 -- 问答记录表
-CREATE TABLE QA (
-                    qa_id INT PRIMARY KEY AUTO_INCREMENT,
-                    history_id INT NOT NULL,
-                    content TEXT NOT NULL,
-                    ask_time DATETIME NOT NULL,
-                    user_id INT
 
-);
--- 主题记录表
-CREATE TABLE Topic (
-                       id INT AUTO_INCREMENT PRIMARY KEY,
-                       user_id INT NOT NULL,
-                       history_id INT NOT NULL,
-                       topic VARCHAR(255)
-);
-浏览记录表
+create table if not exists history_list
+(
+    history_id   int auto_increment comment '主键id'primary key,
+    user_id      int                                not null comment '用户id',
+    history_name varchar(100)                       null comment '历史记录名称',
+    create_time  datetime default CURRENT_TIMESTAMP null comment '创建时间',
+    constraint history_list_fk_1 foreign key (user_id) references user (user_id)
+)
+    comment '历史记录列表';
+
+create table if not exists history
+(
+    id          int auto_increment comment '问答ID'primary key,
+    history_id  int                                not null comment '历史记录序号',
+    question    text                               null comment '问题',
+    answer      text                               null comment 'AI回答',
+    reference   text                               null comment '参考',
+    create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
+    constraint history_history_fk_1 foreign key (history_id) references history_list (history_id)
+)
+    comment '历史记录';
+-- 浏览记录表
 CREATE TABLE user_browse_history (
     id INT AUTO_INCREMENT PRIMARY KEY,          -- 自增主键
     user_id INT NOT NULL,                       -- 用户 ID
